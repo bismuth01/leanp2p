@@ -86,7 +86,6 @@ int main() {
 
   host->start();
   host->listenProtocol(ping);
-  ping->start();
 
   if (isDialer) {
     auto address_str =

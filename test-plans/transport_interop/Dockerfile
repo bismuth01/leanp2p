@@ -31,10 +31,10 @@ COPY . .
 RUN cmake --preset test-plans -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_EXE_LINKER_FLAGS="-static" \
-    && cmake --build build -j$(nproc) --target ping
+    && cmake --build build -j$(nproc) --target transport_interop_ping
 
 FROM alpine:3.19
 
-COPY --from=builder /build/build/test-plans/ping/ping /ping
+COPY --from=builder /build/build/test-plans/transport_interop/transport_interop_ping /transport_interop_ping
 
-ENTRYPOINT ["/ping"]
+ENTRYPOINT ["/transport_interop_ping"]
